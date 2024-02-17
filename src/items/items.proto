@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package items;
+
+service ItemsService {
+    rpc CreateItem(CreateItemRequest) returns (Item) {}
+    rpc GetItem(GetItemRequest) returns (Item) {}
+    rpc StreamItems(Empty) returns (stream Items) {}
+}
+
+message Items {
+    repeated Item items = 1;
+}
+
+message Empty {}
+
+message GetItemRequest {
+    string id = 1;
+}
+
+message CreateItemRequest {
+    string name = 1;
+    int32 quantity = 2;
+}
+
+message Item {
+    string id = 1;
+    string name = 2;
+    int32 quantity = 3;
+}
